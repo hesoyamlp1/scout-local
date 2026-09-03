@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Scout</title>
+  <link rel="stylesheet" href="/static/style.css?v=__ASSET_VERSION__">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%23315f4c'/><text x='10' y='23' fill='white' font-size='18'>S</text></svg>">
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail" id="rail">
+      <div class="brand-row">
+        <button class="brand" data-action="home"><span class="brand-glyph">S</span><span class="brand-copy"><b>Scout</b><small>私人 AI 与内容库</small></span></button>
+        <button class="icon-button rail-close" data-action="close-rail">×</button>
+      </div>
+      <button class="new-chat" data-action="new-chat"><span>＋</span> 新对话</button>
+      <nav class="primary-nav">
+        <button class="nav-item active" data-action="chat"><span class="nav-icon">◌</span><span>对话</span><kbd id="chat-count"></kbd></button>
+        <button class="nav-item" data-action="open-library"><span class="nav-icon">▤</span><span>书架</span><kbd id="library-count"></kbd></button>
+        <button class="nav-item" data-action="open-sources"><span class="nav-icon">◎</span><span>来源</span><kbd id="source-count"></kbd></button>
+        <button class="nav-item" data-action="open-memory"><span class="nav-icon">✦</span><span>记忆</span><i class="memory-dot"></i></button>
+      </nav>
+      <div class="rail-section"><div class="rail-label">最近</div><div id="history-list"><div class="rail-loading">正在加载对话…</div></div></div>
+      <div class="rail-spacer"></div>
+      <button class="account-row" data-action="open-settings"><span class="avatar">设</span><span><b>Scout 设置</b><small id="account-subtitle">Codex、书架与来源</small></span><span class="chevron">›</span></button>
+    </aside>
+    <div class="rail-scrim" data-action="close-rail"></div>
+
+    <main class="stage">
+      <header class="topbar">
+        <button class="icon-button menu-button" data-action="open-rail">☰</button>
+        <div class="conversation-title"><strong id="conversation-title">新的对话</strong><span id="conversation-status">可以问任何事，也可以说想找什么来看</span></div>
+        <div class="top-actions"><span class="worker-status" id="worker-status"><i></i><b>Codex</b></span><button class="quiet-button memory-status" data-action="open-memory"><span>✦</span> 记忆</button><button class="icon-button" data-action="open-settings">···</button></div>
+      </header>
+      <section class="workspace-page chat-page active" id="chat-page" data-workspace="chat">
+      <section class="conversation" id="conversation">
+        <div class="welcome" id="welcome">
+          <div class="welcome-mark">S</div><h1>想聊什么，或者想找点什么来看？</h1>
+          <p>像平常一样说就行。Scout 找到值得读的内容后，会把完整正文带回来，需要中文就逐篇翻译。</p>
+          <div class="welcome-examples">
+            <button data-prompt="给我找三篇日本现代怪谈，短一点，直接翻成中文给我看">找三篇日本现代怪谈，直接翻给我看</button>
+            <button data-prompt="最近有什么值得读的小众长文？先帮我挑一挑">最近有什么小众长文值得读？</button>
+            <button data-prompt="我们随便聊聊吧">随便聊聊</button>
+          </div>
+        </div>
+        <div id="turn-list"></div>
+      </section>
+      <footer class="composer-wrap">
+        <div class="quote-strip hidden" id="quote-strip"><div><b id="quote-title"></b><span id="quote-text"></span></div><button class="icon-button" data-action="clear-quote">×</button></div>
+        <div class="composer"><button class="attach-button" data-action="focus-library">＋</button><textarea id="prompt" rows="1" placeholder="问任何事，或者说你想找什么来看…"></textarea><button class="send-button" id="send-button" data-action="send">↑</button></div>
+        <div class="composer-hint"><span>真正读过的内容会留下，不会只给你一堆链接。</span><kbd>Enter 发送</kbd></div>
+      </footer>
+      </section>
+
+  <section class="workspace-page workspace-content" id="memory-panel" data-workspace="memory" aria-hidden="true">
+    <header class="workspace-head"><button class="workspace-back" data-action="chat">←</button><div><span class="eyebrow">MEMORY</span><h2>Scout 对你的了解</h2></div></header>
+    <div class="panel-intro">长期记忆会让 Scout 少问重复问题。每一条都可以查看和删除；搜索缓存、临时任务和工具过程不会出现在这里。</div>
+    <section class="memory-section"><div class="section-title"><h3>长期记忆</h3><span id="memory-count">正在加载</span></div><div class="memory-list" id="memory-list"></div></section>
+    <section class="memory-section quiet-memory"><div class="section-title"><h3>记忆原则</h3><span>用户可控</span></div><div class="empty-memory">阅读偏好可以从稳定行为中归纳；个人事实只有你明确要求“记住”时才应长期保存。</div></section>
+  </section>
+
+  <section class="workspace-page workspace-content library-panel" id="library-panel" data-workspace="library" aria-hidden="true">
+    <header class="workspace-head"><button class="workspace-back" data-action="chat">←</button><div><span class="eyebrow">LIBRARY</span><h2>你的书架</h2></div></header>
+    <input class="library-search" id="library-search" type="search" placeholder="在书架里找…">
+    <div class="library-tabs"><button class="active" data-library-filter="all">全部</button><button data-library-filter="translated">有中文</button><button data-library-filter="notes">有批注</button></div>
+    <div class="library-list" id="library-list"></div>
+    <div class="library-note">书架只展示真正进入回答、翻译过或写过批注的内容；搜索过程中的候选页留在后台缓存。</div>
+  </section>
+
+  <section class="workspace-page workspace-content sources-panel" id="sources-panel" data-workspace="sources" aria-hidden="true">
+    <header class="workspace-head"><button class="workspace-back" data-action="chat">←</button><div><span class="eyebrow">SOURCES</span><h2>礼貌关注的来源</h2></div></header>
+    <div class="panel-intro">Scout 只低频检查公开入口页，单站一次一个请求；已读正文走缓存，遇到限制会暂停，不绕过登录或验证码。</div>
+    <form class="source-form" id="source-form">
+      <input id="source-url" type="url" placeholder="https://example.com/new" required>
+      <input id="source-name" type="text" placeholder="来源名称（可选）">
+      <input id="source-topic" type="text" placeholder="关注主题（可选）">
+      <button class="primary-button" type="button" data-action="add-source">加入来源</button>
+    </form>
+    <section class="source-section"><div class="section-title"><h3>来源地图</h3><span id="source-summary">正在加载</span></div><div class="source-list" id="source-list"></div></section>
+    <section class="source-section"><div class="section-title"><h3>新发现</h3><span>还未进入书架</span></div><div class="candidate-list" id="candidate-list"></div></section>
+  </section>
+
+  <section class="workspace-page workspace-content settings-panel" id="settings-panel" data-workspace="settings" aria-hidden="true">
+    <header class="workspace-head"><button class="workspace-back" data-action="chat">←</button><div><span class="eyebrow">SETTINGS</span><h2>设置</h2></div></header>
+    <div id="settings-summary" class="panel-intro">正在读取当前设置…</div><div id="settings-content" class="settings-content"></div>
+    <footer class="panel-footer"><button class="text-button" data-action="logout">退出登录</button><span id="settings-note"></span><button class="primary-button" id="save-settings" data-action="save-settings">保存设置</button></footer>
+  </section>
+    </main>
+  </div>
+
+  <section class="reader" id="reader" aria-hidden="true">
+    <header class="reader-topbar">
+      <button class="reader-back" data-action="close-reader"><span>←</span><b id="reader-back-label">返回书架</b></button>
+      <div class="reader-chapter-shell">
+        <small id="reader-work-title"></small>
+        <div class="reader-chapter-control">
+          <button data-action="previous-chapter" title="上一章">←</button>
+          <select id="reader-chapter-select" aria-label="选择章节"></select>
+          <button data-action="next-chapter" title="下一章">→</button>
+        </div>
+      </div>
+      <div class="reader-actions"><a class="reader-text-action" id="reader-source" target="_blank" rel="noreferrer">原文 <span>↗</span></a><button class="reader-text-action reader-chat-toggle" data-action="toggle-reader-chat">陪你聊</button></div>
+    </header>
+    <div class="reader-layout">
+      <main class="paper" id="paper">
+        <header class="article-head"><div class="article-kicker" id="article-kicker"></div><h1 id="article-title"></h1><p class="article-deck" id="article-deck"></p><div class="article-byline" id="article-byline"></div>
+          <div class="reader-translation-cta hidden" id="reader-translation-cta"><span class="translation-glyph">译</span><div><b id="reader-translation-title">生成本章中文译文</b><small id="reader-translation-copy">Codex 会完整读取本章、逐段翻译并保存。</small></div><button class="primary-button" id="reader-translate" data-action="translate-reader">翻译本章</button></div>
+          <div class="view-switch" id="reader-view"><button class="active" data-reader-view="target">中文</button><button data-reader-view="both">对照</button><button data-reader-view="source">原文</button></div>
+        </header>
+        <article class="article-body target-view" id="article-body"></article>
+      </main>
+      <aside class="reader-companion" id="reader-companion">
+        <div class="companion-head"><span class="assistant-mark">S</span><div><b>陪你聊</b><small id="reader-companion-status">已经读过当前章全文</small></div><button class="icon-button companion-close" data-action="toggle-reader-chat">×</button></div>
+        <div class="reader-chat-scroll" id="reader-chat-scroll">
+          <div class="reader-chat-list" id="reader-chat-list"></div>
+          <div class="quick-asks" id="reader-quick-asks"><button data-reader-prompt="这篇最值得注意的地方是什么？">这篇最值得注意的地方？</button><button data-reader-prompt="作者的语气有什么特别？">作者的语气有什么特别？</button></div>
+        </div>
+        <div class="reader-quote hidden" id="reader-quote"><div><b>正在引用</b><span id="reader-quote-text"></span></div><button class="icon-button" data-action="clear-reader-quote">×</button></div>
+        <div class="note-compose hidden" id="note-compose"><b id="note-heading"></b><textarea id="note-input" rows="3" placeholder="在这一段上写点什么…"></textarea><div><button class="text-button" data-action="cancel-note">取消</button><button class="primary-button" data-action="save-note">记下</button></div></div>
+        <div class="mini-composer"><textarea id="reader-prompt" rows="2" placeholder="就着这篇问…"></textarea><button data-action="send-reader-prompt">↑</button></div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="reader-selection-tools hidden" id="reader-selection-tools"><button data-action="quote-selection">引用提问</button><button data-action="note-selection">写批注</button><button data-action="copy-selection">复制</button></div>
+
+  <div class="toast" id="toast"></div>
+  <script src="/static/vendor/marked.min.js"></script><script src="/static/vendor/purify.min.js"></script><script src="/static/app.js?v=__ASSET_VERSION__"></script>
+</body>
+</html>
