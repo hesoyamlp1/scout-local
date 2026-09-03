@@ -9,7 +9,7 @@ param(
 $ErrorActionPreference = "Stop"
 $Python = Join-Path $PSScriptRoot ".venv\Scripts\python.exe"
 if (-not (Test-Path $Python)) {
-    throw "Scout 尚未安装。请先运行 .\install.ps1。"
+    throw "Scout is not installed. Run .\install.ps1 first."
 }
 $Args = @((Join-Path $PSScriptRoot "tools\scout_local.py"), $Command)
 if ($NoOpen -and $Command -in @("start", "restart")) { $Args += "--no-open" }
