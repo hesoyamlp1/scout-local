@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
-    [string]$ScoutHome = ""
+    [string]$ScoutHome = "",
+    [switch]$PrepareOnly
 )
 
 $ErrorActionPreference = "Stop"
@@ -32,6 +33,7 @@ if (-not (Test-Path $VenvPython)) {
 }
 
 Write-Host "Installing Scout dependencies..."
+$env:PIP_NO_CACHE_DIR = "1"
 & $VenvPython -m pip install --disable-pip-version-check --upgrade pip
 & $VenvPython -m pip install --disable-pip-version-check -r (Join-Path $RepoRoot "requirements.txt")
 & $VenvPython -m pip install --disable-pip-version-check -r (Join-Path $RepoRoot "tools\worker-requirements.txt")
@@ -44,6 +46,10 @@ Write-Host "Installing Scout's browser component..."
 & $VenvPython -m playwright install chromium
 
 & $VenvPython (Join-Path $RepoRoot "tools\scout_local.py") init
+if ($PrepareOnly) {
+    Write-Host "Scout preparation completed. Sign-in and startup were intentionally skipped."
+    exit 0
+}
 & $VenvPython (Join-Path $RepoRoot "tools\scout_local.py") login
 if ($LASTEXITCODE -ne 0) { throw "Codex sign-in did not complete." }
 
