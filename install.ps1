@@ -13,10 +13,8 @@ if ($ScoutHome) {
 
 function Find-ScoutPython {
     if (Get-Command py -ErrorAction SilentlyContinue) {
-        foreach ($Version in @("3.12", "3.11", "3.10")) {
-            $Path = & py "-$Version" -c "import sys; print(sys.executable)" 2>$null
-            if ($LASTEXITCODE -eq 0 -and $Path) { return $Path.Trim() }
-        }
+        $Path = & py -3 -c "import sys; print(sys.executable if sys.version_info >= (3, 10) else '')"
+        if ($LASTEXITCODE -eq 0 -and $Path) { return $Path.Trim() }
     }
     if (Get-Command python -ErrorAction SilentlyContinue) {
         $Path = & python -c "import sys; print(sys.executable if sys.version_info >= (3, 10) else '')"
