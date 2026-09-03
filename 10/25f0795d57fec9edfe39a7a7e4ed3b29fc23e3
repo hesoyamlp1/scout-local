@@ -1,0 +1,23 @@
+install.ps1
+  s_ef6f2ddd37d41e::t_c2d85fa5b37d78 9
+scout.ps1
+  s_ef6f2ddd37d41e::t_71fd494dcd711b 10
+tools/scout_local.py
+  s_ef6f2ddd37d41e::t_bcb0b0cc4e1d20 222-223,323,333-334,340-342
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "1025f0795d57fec9edfe39a7a7e4ed3b29fc23e3",
+  "prompts": {},
+  "sessions": {
+    "s_ef6f2ddd37d41e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a065f7-7fa7-7f63-a01c-2e4c905f77b0",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "LinSuki <admin@toddout.work>"
+    }
+  }
+}
