@@ -219,6 +219,8 @@ def runtime_env() -> dict[str, str]:
         "SCOUT_LOG_DIR": str(p["logs"]),
         "SCOUT_CODEX_HOME": str(p["codex_home"]),
         "SCOUT_CODEX_WORKER_ENABLED": "true",
+        "SCOUT_WORKER_TOKEN": _token(p["worker_token"]),
+        "SCOUT_MCP_TOKEN": _token(p["mcp_token"]),
         "SCOUT_WORKER_TOKEN_FILE": str(p["worker_token"]),
         "SCOUT_MCP_TOKEN_FILE": str(p["mcp_token"]),
         "SCOUT_WORKER_CONCURRENCY": "2",
@@ -318,24 +320,26 @@ def _pid_alive(pid: int) -> bool:
     try:
         os.kill(pid, 0)
         return True
-    except OSError:
+    except (OSError, SystemError):
         return False
 
 
 def _stop_pid(pid: int) -> None:
-    if not _pid_alive(pid):
-        return
     if os.name == "nt":
         subprocess.run(
             ["taskkill", "/PID", str(pid), "/T", "/F"],
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False,
         )
-    else:
+        return
+    if _pid_alive(pid):
         os.kill(pid, signal.SIGTERM)
 
 
 def stop() -> int:
     state = _load_state()
+    if state and (state.get("root") != str(ROOT) or state.get("port") != port()):
+        print("Scout 进程记录不属于当前安装，拒绝停止。", file=sys.stderr)
+        return 1
     for name in ("worker", "server"):
         try:
             pid = int(state.get(name) or 0)

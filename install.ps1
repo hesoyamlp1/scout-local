@@ -6,6 +6,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 $RepoRoot = $PSScriptRoot
+$env:PYTHONUTF8 = "1"
 
 if ($ScoutHome) {
     $env:SCOUT_HOME = $ScoutHome
