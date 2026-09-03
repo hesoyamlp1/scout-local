@@ -1,0 +1,19 @@
+install.ps1
+  s_6a86020e787a6c::t_951d160dd9db66 3-4,36,49-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "76b6786685cb676540abb18fc258488e76c82649",
+  "prompts": {},
+  "sessions": {
+    "s_6a86020e787a6c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a062d1-3824-7151-b5c2-45ba333ad6e5",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "LinSuki <admin@toddout.work>"
+    }
+  }
+}
