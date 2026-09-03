@@ -1,0 +1,19 @@
+install.ps1
+  s_ef6f2ddd37d41e::t_752697f4209263 16-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "0562d5f16fd9b499b00c1c3d4bc6b4e3b6414b6b",
+  "prompts": {},
+  "sessions": {
+    "s_ef6f2ddd37d41e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a065f7-7fa7-7f63-a01c-2e4c905f77b0",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "LinSuki <admin@toddout.work>"
+    }
+  }
+}
