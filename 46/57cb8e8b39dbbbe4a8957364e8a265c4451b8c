@@ -1,0 +1,133 @@
+.gitignore
+  s_ef6f2ddd37d41e::t_f740d58cc8a3c5 1-8
+INSTALL.md
+  s_ef6f2ddd37d41e::t_af593fc85e82f2 1-62
+LICENSE
+  s_ef6f2ddd37d41e::t_72563258e25aa0 1-202
+README.md
+  s_ef6f2ddd37d41e::t_7074b1d682f8f4 1-55
+docs/PRIVACY.md
+  s_ef6f2ddd37d41e::t_f626586d2387b5 1-30
+install.ps1
+  s_ef6f2ddd37d41e::t_e9cbdcc0467712 1-56
+requirements.txt
+  s_ef6f2ddd37d41e::t_96cccb9f27cff4 1-10
+scout.ps1
+  s_ef6f2ddd37d41e::t_4969fe317267f8 1-17
+server/agent/__init__.py
+  s_ef6f2ddd37d41e::t_7182970d43faa6 1
+server/agent/main.py
+  s_ef6f2ddd37d41e::t_1c245d87d531de 1-327
+server/agent/runner.py
+  s_ef6f2ddd37d41e::t_23382824ebfe08 1-366
+server/agent/subagents/__init__.py
+  s_ef6f2ddd37d41e::t_ce3b32f9441970 1
+server/agent/subagents/fetch.py
+  s_ef6f2ddd37d41e::t_d1e8cc1a9eba41 1-189
+server/agent/subagents/find.py
+  s_ef6f2ddd37d41e::t_81fbebe4495d55 1-172
+server/agent/subagents/memory.py
+  s_ef6f2ddd37d41e::t_c9d239fd14f101 1-182
+server/agent/subagents/process.py
+  s_ef6f2ddd37d41e::t_2fc0a20fb9506e 1-236
+server/agent/subagents/research.py
+  s_ef6f2ddd37d41e::t_7621e9eac24543 1-197
+server/app.py
+  s_ef6f2ddd37d41e::t_c4184939156c89 1-976
+server/auth.py
+  s_ef6f2ddd37d41e::t_5936f3f980d64c 1-78
+server/browser.py
+  s_ef6f2ddd37d41e::t_45cf29c120325e 1-164
+server/config.py
+  s_ef6f2ddd37d41e::t_173b48027a6cd7 1-357
+server/content/__init__.py
+  s_ef6f2ddd37d41e::t_12e2e3411e8427 1-1019
+server/content/store.py
+  s_ef6f2ddd37d41e::t_ec012446e9b211 1-489
+server/cost.py
+  s_ef6f2ddd37d41e::t_98e4bf78d144ba 1-174
+server/extract.py
+  s_ef6f2ddd37d41e::t_b594d953ef89ee 1-74
+server/jobs.py
+  s_ef6f2ddd37d41e::t_4227980bee653b 1-272
+server/llm.py
+  s_ef6f2ddd37d41e::t_8b63f6075f740f 1-342
+server/net.py
+  s_ef6f2ddd37d41e::t_352aaf5f654fab 1-636
+server/pipeline.py
+  s_ef6f2ddd37d41e::t_857a8e82cf029c 1-168
+server/search/__init__.py
+  s_ef6f2ddd37d41e::t_8f469a07e17966 1-272
+server/search/base.py
+  s_ef6f2ddd37d41e::t_6b4f9238f146f9 1-36
+server/search/hackernews.py
+  s_ef6f2ddd37d41e::t_1d9932e98c6ca4 1-73
+server/search/mojeek.py
+  s_ef6f2ddd37d41e::t_039bb8c1ac006c 1-139
+server/search/searxng.py
+  s_ef6f2ddd37d41e::t_dc5e72d17c0ae0 1-89
+server/search/serper.py
+  s_ef6f2ddd37d41e::t_5a8426e2e5a6f8 1-236
+server/search/stackexchange.py
+  s_ef6f2ddd37d41e::t_c4f1ab2f414985 1-153
+server/search/tavily.py
+  s_ef6f2ddd37d41e::t_99c843f8285594 1-77
+server/search/wikipedia.py
+  s_ef6f2ddd37d41e::t_109d6d3764c563 1-73
+server/search/yahoo_japan.py
+  s_ef6f2ddd37d41e::t_e1aacb6424ca7f 1-96
+server/session.py
+  s_ef6f2ddd37d41e::t_97ebbab93fd53f 1-313
+server/settings.py
+  s_ef6f2ddd37d41e::t_2f64251f5df691 1-250
+server/sources.py
+  s_ef6f2ddd37d41e::t_37abf802f824c3 1-199
+server/translate.py
+  s_ef6f2ddd37d41e::t_b7b73af8290081 1-156
+server/worker_tools.py
+  s_ef6f2ddd37d41e::t_0a211bd808f14a 1-264
+tools/codex_job_output.schema.json
+  s_ef6f2ddd37d41e::t_26c6ae8bee3c1c 1-10
+tools/codex_runtime.py
+  s_ef6f2ddd37d41e::t_e87d36e1079e87 1-121
+tools/codex_worker.py
+  s_ef6f2ddd37d41e::t_a9080a1df23657 1-406
+tools/scout_local.py
+  s_ef6f2ddd37d41e::t_2e91eb6383afc7 1-440
+tools/scout_mcp_proxy.py
+  s_ef6f2ddd37d41e::t_a28985b8fe1464 1-195
+tools/worker-requirements.txt
+  s_ef6f2ddd37d41e::t_5ff752e0dfc059 1
+web/app.js
+  s_ef6f2ddd37d41e::t_2f23c213da6aa4 1-1001
+web/index.html
+  s_ef6f2ddd37d41e::t_7d7dac9f50e5e9 1-132
+web/login.html
+  s_ef6f2ddd37d41e::t_2c0e07c011740b 1-78
+web/style.css
+  s_ef6f2ddd37d41e::t_8026f53c46cd16 1-453
+web/vendor/github-dark.min.css
+  s_ef6f2ddd37d41e::t_48fa37a6829735 1-10
+web/vendor/highlight.min.js
+  s_ef6f2ddd37d41e::t_bd4e7a71d8c616 1-1232
+web/vendor/marked.min.js
+  s_ef6f2ddd37d41e::t_cdd7563806f744 1-6
+web/vendor/purify.min.js
+  s_ef6f2ddd37d41e::t_611a3689d5d5a2 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "4657cb8e8b39dbbbe4a8957364e8a265c4451b8c",
+  "prompts": {},
+  "sessions": {
+    "s_ef6f2ddd37d41e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a065f7-7fa7-7f63-a01c-2e4c905f77b0",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "LinSuki <admin@toddout.work>"
+    }
+  }
+}
